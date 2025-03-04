@@ -4,7 +4,7 @@ import os
 
 root = Path.cwd().absolute()
 path_env = Path(f'{root}/.env').absolute()
-load_dotenv(path_env)
+load_dotenv('/home/investors/ai_investors/projects/workerdown_investors/.env')
 
 try:
     CLIENT_SECRET = os.environ['secret_client_key']

@@ -1,6 +1,4 @@
-import findspark
 import os
-import json
 from pathlib import Path
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import to_json, struct, monotonically_increasing_id
