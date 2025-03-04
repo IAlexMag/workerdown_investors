@@ -17,5 +17,8 @@ COPY . .
 # Instalar dependencias de Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Comando por defecto para ejecutar el script
-CMD ["python", "main.py"]
+# Definir que se carguen las variables del .env
+RUN pip install python-dotenv
+
+# Comando para ejecutar el script cargando las variables de entorno
+CMD ["sh", "-c", "set -a && source .env && python main.py"]
