@@ -20,5 +20,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Definir que se carguen las variables del .env
 RUN pip install python-dotenv
 
+
 # Comando para ejecutar el script cargando las variables de entorno
 CMD ["sh", "-c", "set -a && source .env && python main.py"]
