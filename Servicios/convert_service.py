@@ -10,7 +10,7 @@ def convert_to_json():
         # Se realiza la descarga del archivo
         spark = SparkSession.builder.appName("convert_session").getOrCreate()
         spark.sparkContext.addPyFile(os.path.join(script_dir, "__init__.py"))
-        spark.sparkContext.addPyFile(os.path.join(script_dir, "azure_services.py"))
+        spark.sparkContext.addPyFile(os.path.join(script_dir, "azure_service.py"))
         spark.sparkContext.addPyFile(os.path.join(script_dir, "convert_service.py"))
         root = Path.cwd()
         folder_path = Path(f'{root}/files/test/').absolute()
