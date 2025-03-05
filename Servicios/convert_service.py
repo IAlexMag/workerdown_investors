@@ -2,14 +2,18 @@ import os
 from pathlib import Path
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import to_json, struct, monotonically_increasing_id
-from azure_service import load_json_blobs
+from Servicios.azure_service import load_json_blobs
 
 def convert_to_json():
     try:
-        root = Path.cwd()
-        script_dir=os.path.dirname(os.path.abspath(__file__))
+        script_dir = os.path.dirname(os.path.abspath(__file__))
         servicios_dir = os.path.join(script_dir, "Servicios")
+        # Se realiza la descarga del archivo
         spark = SparkSession.builder.appName("convert_session").getOrCreate()
+        spark.sparkContext.addPyFile(os.path.join(servicios_dir, "__init__.py"))
+        spark.sparkContext.addPyFile(os.path.join(servicios_dir, "azure_services.py"))
+        spark.sparkContext.addPyFile(os.path.join(servicios_dir, "convert_service.py"))
+        root = Path.cwd()
         folder_path = Path(f'{root}/files/test/').absolute()
         for file in os.listdir(folder_path):
             if file.endswith('.csv'):
