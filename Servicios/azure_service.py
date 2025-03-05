@@ -30,11 +30,14 @@ def download_files_blob():
         print(e)
 
 def load_json_blobs(partition):
+    results = []
     try:
         container_client = blob_service_client.get_container_client(container=destiny_container)
         for row in partition:
             blob_name = f'20250302/record_{row.id}.json'
             blob_client = container_client.get_blob_client(blob_name)
             blob_client.upload_blob(row.json.encode('utf-8'), overwrite = True)
+            results.append(1)
     except Exception as e:
         print(e)
+    return iter(results)
