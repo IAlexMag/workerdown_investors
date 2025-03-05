@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Instalar dependencias del sistema (Java y otras necesarias para PySpark)
 RUN apt-get update && apt-get install -y openjdk-21-jdk && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Definir variable de entorno para Java (requerida por PySpark)
 ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
@@ -17,9 +17,8 @@ COPY . .
 # Instalar dependencias de Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Definir que se carguen las variables del .env
-RUN pip install python-dotenv
+# Definir que se carguen las variables del .env dentro del script
+# No es necesario instalar python-dotenv por separado si ya está en requirements.txt
 
-
-# Comando para ejecutar el script cargando las variables de entorno
-CMD ["sh", "-c", "set -a && source .env && python main.py"]
+# Comando para ejecutar el script sin depender de `source .env`
+CMD ["python", "main.py"]
