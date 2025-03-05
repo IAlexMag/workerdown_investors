@@ -24,7 +24,7 @@ RUN /app/venv/bin/python -m pip install --no-cache-dir -r requirements.txt
 
 # Descargar y extraer Spark
 # Ajusta la versión de Spark según tus necesidades
-ARG SPARK_VERSION=3.5.0
+ARG SPARK_VERSION=3.5.5
 ARG HADOOP_VERSION=3
 RUN wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
     tar -xzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
