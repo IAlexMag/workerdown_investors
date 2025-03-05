@@ -5,11 +5,11 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Instalar dependencias del sistema (Java y otras necesarias para PySpark)
-RUN apt-get update && apt-get install -y openjdk-11-jdk && \
+RUN apt-get update && apt-get install -y openjdk-21-jdk && \
     rm -rf /var/lib/apt/lists/*
 
 # Definir variable de entorno para Java (requerida por PySpark)
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 
 # Copiar los archivos de la aplicación al contenedor
 COPY . .
