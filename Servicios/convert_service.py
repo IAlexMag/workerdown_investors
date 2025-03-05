@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import to_json, struct, monotonically_increasing_id
-from Services.azure_service import load_json_blobs
+from Servicios.azure_service import load_json_blobs
 
 def convert_to_json():
     try:
